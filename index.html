@@ -14,15 +14,18 @@
     <script type="text/babel">
         let score =0;
         let wicket=0;
-        function clickOne(){
-            alert("1 is clicked")
+        function addOne(){
+
+            score +=1;
+            // Re-render the app after clicking
+            rootElement.render(<App />);
         }
         const App = () => (
             <>
                 <h1>Score-Keeper App By using React</h1>
                 <h2>SCORE:{score}/{wicket}</h2>
                 <div>
-                <button onClick={clickOne}>1</button>
+                <button onClick={addOne}>1</button>
                 <button>2</button>
                 <button>3</button>
                 <button>4</button>
