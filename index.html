@@ -21,12 +21,15 @@
         //     rootElement.render(<App />);
         // }
         function addScore(num){
+            if(wicket<10){
             score+=num;
             rootElement.render(<App />);
+            }
         }
         function addWicket(){
-            wicket++;;
-            rootElement.render(<App />);
+            if(wicket<10){
+            wicket++;    
+            rootElement.render(<App />);}
         }
         const App = () => (
             <>
