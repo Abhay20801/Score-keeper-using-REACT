@@ -15,6 +15,8 @@
         let score =0;
         let wicket=0;
         let ballWiseResult = [];
+        let hit =0;
+        let inputRef = React.createRef();
         // function addOne(){
 
         //     score +=1;
@@ -22,18 +24,14 @@
         //     rootElement.render(<App />);
         // }
         function addScore(num){
-            if(wicket<10){
-            ballWiseResult.push(num);
-            score+=num;
+            hit = num;
             rootElement.render(<App />);
             }
-        }
+        
         function addWicket(){
-            if(wicket<10){
-            ballWiseResult.push("W");
-            wicket++;    
+           hit="W"  
             rootElement.render(<App />);}
-        }
+        
         // Score button component
         const ScoreButtons = () => (
             <div>
@@ -53,9 +51,7 @@
             <div>
                {ballWiseResult.map((res,index)=>(
                <>
-                {index % 6===0?<br/>:null}
-                
-                <span key={index}> {res === 0 ? <strong>.</strong>: res} </span>
+                <p key={index}>{res}</p>
 
                 </>
                 ))} 
@@ -65,11 +61,24 @@
 // Function to handle reload
     function handleSubmit(event){
         event.preventDefault();
+        if(hit == "W"){
+            wicket++;
+        }else{
+            score+=hit;
+        }
+        
+        ballWiseResult.unshift(
+            // <span>{hit}{","}{inputRef.current.value}</span>
+            <span>{`${hit},${inputRef.current.value}`}</span>
+            );
+            hit =0;
+            inputRef.current.value="";
+        rootElement.render(<App />);
     }
         const Form = () => (
             <form onSubmit={handleSubmit}>
-               <input/>
-               <input placeholder="Message"/>
+               <input value={hit}/>
+               <input placeholder="Message" ref={inputRef}/>
                <button>Submit</button>
             </form>
 
