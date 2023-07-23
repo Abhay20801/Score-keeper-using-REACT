@@ -54,17 +54,36 @@
                {ballWiseResult.map((res,index)=>(
                <>
                 {index % 6===0?<br/>:null}
+                
                 <span key={index}> {res === 0 ? <strong>.</strong>: res} </span>
+
                 </>
                 ))} 
                 
             </div>
         )
+// Function to handle reload
+    function handleSubmit(event){
+        event.preventDefault();
+    }
+        const Form = () => (
+            <form onSubmit={handleSubmit}>
+               <input/>
+               <input placeholder="Message"/>
+               <button>Submit</button>
+            </form>
+
+        )
+
         const App = () => (
             <>
                 <h1>Score-Keeper App By using React</h1>
                 <h2>SCORE:{score}/{wicket}</h2>
                 <ScoreButtons/>
+                <br/>
+                <br/>
+                <Form/>
+                <hr/>
                 <Result/>
             </>
         )
